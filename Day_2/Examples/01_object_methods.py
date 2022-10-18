@@ -4,12 +4,12 @@ class Point:
         self.x = x
         self.y = y
 
-    # Метод distance
+    # Метод distance возвращает свой результат
     def distance(self, other_point) -> float:
         return ((self.x - other_point.x) ** 2 + (self.y - other_point.y) ** 2) ** 0.5
 
     # Метод inverse, который меняем состояние экземпляра
-    def inverse(self, value=-1) -> None:
+    def inverse(self, value: int = -1) -> None:
         self.x *= value
         self.y *= value
 
