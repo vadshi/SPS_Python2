@@ -7,12 +7,12 @@ class People:
     name = "Teachers"
 
 
-# ## Встроенный(системный)
+## Встроенный(системный)
 # print(People.__name__)
 # People.__name__ = 'Some people'
 # print(People.__name__)
 #
-# # Сами создаем в классе
+# Сами создаем в классе
 # print(People.name)
 # print(id(People))
 # p = People()
@@ -23,10 +23,10 @@ class People:
 # print(id(People) == id(P1))
 # print(People is P1)
 # print(p)  # repr(p)
-# print(hex(id(p)).upper())
-
-# Объект живет, пока есть ссылка на него
-# ======================================
+# print(f'{hex(id(p)).upper(): >45}')
+#
+# # Объект живет, пока есть ссылка на него
+# # ======================================
 # del People
 # doubt_p = P1()
 # print(doubt_p)
@@ -34,6 +34,7 @@ class People:
 # # p2 = People()  # Out: NameError: name 'People' is not defined
 # del P1
 # print(p.name)
+# # Получаем словарь объекта
 # print(vars(p))
 # People = type(p)
 # print(id(People))
@@ -48,59 +49,62 @@ class People:
 # print(type(new_p))
 # print(new_p)
 # print(id(new_p))
-# # #
-# # # ## Получаю доступ к классу экземпляра
+#
+# ## Получаю доступ к классу экземпляра
 # print(p.__class__)
 # print(new_p.__class__)
 # print('=' * 40)
-# # #
-# # # # Создаем экземпляр
+# # # #
+# # # # # Создаем экземпляр
 # p2 = p.__class__()  # p2 = People()
 # print(type(p2), p2)
 # print('=' * 40)
-# #
-# # # Получаю доступ к классу экземпляра
-# # # и затем к имени класса
+
+# Получаю доступ к классу экземпляра
+# и затем к имени класса
 # print(p.__class__.__name__)  # Out: People
 # print(p.name)  # Out: Teachers
 # p.__class__.__name__ = "Person"
 # print(p.__class__.__name__)
 # print(People.__name__)
 # #
-# # print(p.__name__)  # AttributeError
-# # print(type(People))  # <class 'type'>
+# print(p.__name__)  # AttributeError
+# print(type(People))  # <class 'type'>
 # p4 = People()
 # print(p4.__class__.__name__)
 
 ## Доступ к полям класса
-# p = People()
-# pprint(People.__dict__)
-# People.count = 20
-# print(p.count)
-# print(p.name)
-# pprint(People.__dict__)
-# pprint(p.__dict__)  # Out: {}
-# #
-# # ## Создаем значение для атрибута экземпляра
-# p.count = 30
-# # pprint(p.__dict__)
-# # pprint(p.__class__.__dict__)  # People.__dict__
-# # print(p.count)
-# # print(vars(p).get('name'))
+# # Получаем словарь объекта
+p = People()
+pprint(People.__dict__)
+People.count = 20
+print(p.count)
+print(p.name)
+pprint(People.__dict__)
+pprint(p.__dict__)  # Out: {}
+
+## Создаем значение для атрибута экземпляра
+p.count = 30
+pprint(p.__dict__)
+pprint(p.__class__.__dict__)  # People.__dict__
+print(p.count)
+print(vars(p).get('name'))
 #
-# del People.name
-# # pprint(People.__dict__)
-# # print(p.name)  # AttributeError
-# print(p.count) # Ошибки не будет
+del People.name
+pprint(People.__dict__)
+# print(p.name)  # AttributeError
+print(p.count) # Ошибки не будет
+
+p.name = 'Students'
+p.age = 22
+pprint(p.__dict__)
 # #
-# p.name = 'Students'
-# p.age = 22
-# # pprint(p.__dict__)
-# # # #
-# # # # функция vars покажет словарь атрибутов объекта
-# # print(vars(p))
-# # print(vars(People))
-#
+# # функция vars покажет словарь атрибутов объекта
+print(vars(p))
+pprint(vars(People))
+
+# ===== PAUSE =====
+
 # p.__class__.name = 'SName'  # People.name = 'SName'
 # # pprint(People.__dict__)
 # # print(p.__dict__)
