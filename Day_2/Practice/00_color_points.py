@@ -36,7 +36,7 @@ def area(points):
     b = points[1].dist_to(points[2])
     c = points[0].dist_to(points[2]
     p = (a + b + c)/2
-    s = (p * (p - points[0].dist_to(points[1])) * (p - points[1].dist_to(points[2])) * (p - points[0].dist_to(points[2]))) ** 0.5
+    s = (p * (p - a) * (p - b) * (p - c)) ** 0.5
     return s
 
 def res_area(points):
