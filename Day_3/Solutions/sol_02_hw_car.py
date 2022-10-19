@@ -35,3 +35,68 @@ car1.ride(50)  # едем 50 км (если хватит топлива)
 
 г) реализовать метод: car1.info() (количество бензина в баке и пробег)
 """
+
+
+class Car:
+    def __init__(self, gas=5, capacity=40, gas_per_100km=10, mileage=0):
+        self.gas = gas
+        self.capacity = capacity
+        self.gas_per_100km = gas_per_100km
+        self.mileage = mileage
+
+    def fill(self, volume):
+        free_space = self.capacity - self.gas
+        if volume > free_space:
+            self.gas = self.capacity
+            extra_volume = volume - free_space
+            print('Бак заполнен полностью. Лишних литров: {}'.format(extra_volume))
+        else:
+            self.gas += volume
+
+    def ride(self, distance):
+        possible_distance = self.gas * 100 / self.gas_per_100km
+        if distance > possible_distance:
+            self.gas = 0
+            self.mileage += possible_distance
+            print('Не хватает топлива. Проехали километров: {}'.format(possible_distance))
+        else:
+            self.gas -= distance * self.gas_per_100km / 100
+            self.mileage += distance
+            print('Проехали километров: {}'.format(distance))
+
+    def info(self):
+        print('Количество бензина в баке, литров: {}'.format(self.gas))
+        print('Пробег, километров: {}'.format(self.mileage))
+
+
+""" Test """
+car1 = Car(30, 60, 8, 20000)
+car1.info()
+print('=' * 40)
+
+car1.fill(5)
+car1.info()
+print('=' * 40)
+
+car1.fill(50)
+car1.info()
+print('=' * 40)
+
+car1.ride(200)
+car1.info()
+print('=' * 40)
+
+car1.ride(500)
+car1.info()
+print('=' * 40)
+
+car1.ride(2000)
+car1.info()
+print('=' * 40)
+
+car1.fill(60)
+car1.info()
+print('=' * 40)
+
+car2 = Car()
+car2.info()
