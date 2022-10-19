@@ -83,25 +83,25 @@ import pprint as pp
 # B.say()  # AttributeError
 
 # Так можно, но ненужно
-class Person:
-    def __init__(some, name):
-        some.name = name
-        print(id(some))
-
-    def add(self, s):
-        self.name += s
-        print(id(self))
-
-    def second(abcd):
-        abcd.name += ' work'
-        print(f'{abcd.name = }')
-        print(id(abcd))
-
-
-p = Person('python')
-print(id(p))
-print('Before:', p.name)
-p.add('!!!')  # Person.add(p)  s = '!!!'
-print('After:', p.name)
-p.second()   # Person.second(p)
+# class Person:
+#     def __init__(some, name):
+#         some.name = name
+#         print(id(some))
+#
+#     def add(self, s):
+#         self.name += s
+#         print(id(self))
+#
+#     def second(abcd):
+#         abcd.name += ' work'
+#         print(f'{abcd.name = }')
+#         print(id(abcd))
+#
+#
+# p = Person('python')
+# print(id(p))
+# print('Before:', p.name)
+# p.add('!!!')  # Person.add(p)  s = '!!!'
+# print('After:', p.name)
+# p.second()   # Person.second(p)
 

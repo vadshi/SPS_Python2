@@ -75,61 +75,60 @@ class People:
 
 ## Доступ к полям класса
 # # Получаем словарь объекта
-p = People()
-pprint(People.__dict__)
-People.count = 20
-print(p.count)
-print(p.name)
-pprint(People.__dict__)
-pprint(p.__dict__)  # Out: {}
-
-## Создаем значение для атрибута экземпляра
-p.count = 30
-pprint(p.__dict__)
-pprint(p.__class__.__dict__)  # People.__dict__
-print(p.count)
-print(vars(p).get('name'))
+# p = People()
+# pprint(People.__dict__)
+# People.count = 20
+# print(p.count)
+# print(p.name)
+# pprint(People.__dict__)
+# pprint(p.__dict__)  # Out: {}
 #
-del People.name
-pprint(People.__dict__)
-# print(p.name)  # AttributeError
-print(p.count) # Ошибки не будет
-
-p.name = 'Students'
-p.age = 22
-pprint(p.__dict__)
+# ## Создаем значение для атрибута экземпляра
+# p.count = 30
+# pprint(p.__dict__)
+# pprint(p.__class__.__dict__)  # People.__dict__
+# print(p.count)
+# print(vars(p).get('name'))
 # #
-# # функция vars покажет словарь атрибутов объекта
-print(vars(p))
-pprint(vars(People))
-
-# ===== PAUSE =====
-
-# p.__class__.name = 'SName'  # People.name = 'SName'
-# # pprint(People.__dict__)
-# # print(p.__dict__)
+# del People.name
+# pprint(People.__dict__)
+# # print(p.name)  # AttributeError
+# print(p.count) # Ошибки не будет
+#
+# p.name = 'Students'
+# p.age = 22
+# pprint(p.__dict__)
 # # #
-# # ## Функции getattr, setattr, delattr, hasattr
-# # # название класса, имя атрибута,
-# print(getattr(People, 'name', ))  # Out: People.name -> SName
+# # # функция vars покажет словарь атрибутов объекта
+# print(vars(p))
+# pprint(vars(People))
+#
+# # ===== PAUSE =====
+#
+# p.__class__.name = 'SName'  # People.name = 'SName'
+# pprint(People.__dict__)
+# print(p.__dict__)
+#
+# ## Функции getattr, setattr, delattr, hasattr
+# ## название класса, имя атрибута,
+# print(getattr(People, 'name'))  # Out: People.name -> SName
 # #
 # # # Вернет третий аргумент, если атрибута нет
 # print(getattr(People, 'name2', 'Такого нет'))
-# #
-# # # # название класса, имя атрибута, значение атрибута
+#
+# # название класса, имя атрибута, значение атрибута
 # setattr(People, 'course', 'Python')  # People.course = 'Python'
 # pprint(People.__dict__)
-#
+# #
 # # # # Удаляем атрибут
 # delattr(People, 'course')
 # pprint(People.__dict__)
 #
-# # # проверка наличия атрибута у объекта(класс,экземпляр)
+# # проверка наличия атрибута у объекта(класс,экземпляр)
 # print(hasattr(People, 'age'), hasattr(People, 'name'))
 # print(hasattr(p, "name"), hasattr(p, 'age'))
 #
-#
-# # # Проверка понимания
+# # Проверка понимания
 # People.some = 567
 # print(hasattr(p, 'some'))  # True
 # print(p.some)
@@ -152,11 +151,11 @@ pprint(vars(People))
 # s1.name = 'Second'
 # s2.name = 'Third'
 # s2.age = 22
-# print(s1.__class__.__name__)
+# # print(s1.__class__.__name__)
 # print(s1.__dict__)  # Out: {'name':'Second'}
 # print(s2.__dict__)  # Out: {'name':'Third', 'age':22}
 # pprint(Student.__dict__)
-# # print(s1.age)  # AttributeError: 'Student' object has no attribute 'age'
+# print(s1.age)  # AttributeError: 'Student' object has no attribute 'age'
 # #
 # s3 = Student()
 # s4 = Student()
@@ -167,46 +166,57 @@ pprint(vars(People))
 # print('*' * 50)
 
 # Методы класса
-# class StudentBetter:
-#     def __init__(self, name='Ivan'):
-#         self.name = name
-#         self.surname = 'Ivanov'
-#
-#     def hello1(self) -> None:
-#         self.name += ' addons'
-#
-#     def hello3(self) -> None:
-#         print(self.name, self.surname)
-#
-#     def hello2():
-#         print('Hello, Student')
-#
-#
-# print(f'{id(StudentBetter) = }')
-# print(StudentBetter.hello1)
-# print(id(StudentBetter.hello1))
-# sb = StudentBetter()
-# print(f'{id(sb) = }')
-# print(sb.hello1)
-# print(id(sb.hello1))
-# # #
-# # # Работаем через класс
-# sb.hello1()  # StudentBetter.hello1(sb)
-# print(sb.name)
+class StudentBetter:
+    def __init__(self, name='Ivan'):
+        self.name = name
+        self.surname = 'Ivanov'
+
+    def hello1(self) -> None:
+        self.name += ' Ivanovich'
+
+    def hello3(self) -> None:
+        print(self.name, self.surname)
+
+    def hello2():
+        print('Hello, Student')
+
+
+print(f'{id(StudentBetter) = }')
+print(StudentBetter.hello1)
+print(id(StudentBetter.hello1))
+sb = StudentBetter()
+print(f'{id(sb) = }')
+print(sb.hello1)
+print(id(sb.hello1))
+
+# Работаем через класс
+sb.hello1()  # StudentBetter.hello1(sb)
+print(sb.name)
 # StudentBetter.hello1(sb)  # sb.hello1()
 # print(sb.name)
-# # # #
-# # # Два одинаковых вызова
-# sb.hello3()
-# StudentBetter.hello3(sb)  # sb.hello3()
+
+# # Два одинаковых вызова
+sb.hello3()
+StudentBetter.hello3(sb)  # sb.hello3()
 #
-# # # Важный момент с hello2()
-# StudentBetter.hello2()   # Отработает
-# # sb.hello2()               # TypeError
-# # StudentBetter.hello2(sb)  # TypeError
+# Важный момент с hello2()
+StudentBetter.hello2()   # Отработает
+# sb.hello2()               # TypeError
+# StudentBetter.hello2(sb)  # TypeError
 #
-# print(sb.__dict__)
-# print(sb.hello1.__self__)
-# print(hex(id(sb)))
-# print(sb.hello1.__func__)
-# print(type(sb.hello1))
+print(sb.__dict__)
+print(sb.hello1.__self__)
+print(hex(id(sb)))
+print(sb.hello1.__func__)
+print(type(sb.hello1))
+
+# У пользовательских функций можно создавать
+# атрибуты, а у встроенных - нет
+def add(a, b):
+    return a + b
+
+add.name = 'My function'  # Out: Нет vs Да
+print(add.name, type(add))
+
+sum.name = 'My function sum'  # Out: Нет vs Да
+print(sum.name)
