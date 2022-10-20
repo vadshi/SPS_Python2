@@ -34,7 +34,7 @@ class Point(object):
 
     # Определение оператора > (greater than)
     def __gt__(self, other):
-        # return not self < other # можно и так, если точки не могут быть равны
+        # return not self < other # можно и так, если точки не могут быть равны,
         # но пока лучше все явно прописывать
         if self.x == other.x:
             return self.y > other.y
