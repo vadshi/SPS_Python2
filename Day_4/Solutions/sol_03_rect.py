@@ -23,10 +23,40 @@ import random
 
 
 class Rect:
-    pass
+    def __init__(self,  width=5, length=10):
+        self.width = width
+        self.length = length
+
+    def area(self):
+        return self.length * self.width
+
+    def perimeter(self):
+        return (self.length + self.width) * 2
+
+    def __str__(self):
+        return f"Ширина: {self.width}, длина: {self.length}"
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.width},{self.length})"
+
+    def scale(self, n):
+        self.length *= n
+        self.width *= n
+
+    def rotate(self):
+        # Variant 1
+        self.width, self.length = self.length, self.width
+
+        # # Variant 2
+        # a = self.length
+        # self.length = self.width
+        # self.width = a
+
 
 ## Тестовая часть
 rect = Rect(5, 10)
+print(rect)
+print(repr(rect))
 print("Площадь: ", rect.area())
 print("Периметр: ", rect.perimeter())
 

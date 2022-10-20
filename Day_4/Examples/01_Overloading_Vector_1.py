@@ -27,7 +27,7 @@ class Vector:
 
     # Формируем удобное отображение объекта при выводе функцией print()
     def __str__(self):
-        return "V(x:{} y:{})".format(self.x, self.y)
+        return "Vector(x:{}, y:{})".format(self.x, self.y)
 
 
 class Slon:
@@ -45,36 +45,38 @@ v2 = Vector((12, 10))
 
 # Явно вызываем явный метод
 print(v1.add(v2))
-#
-# # Наши объекты участвуют в операции сложения (+)
-# # Благодаря перегрузке, мы можем использовать более удобную и привычную запись:
-v3 = v1 + v2  # v1.__add__(v2)
+
+# Наши объекты участвуют в операции сложения (+)
+# Благодаря определению метода, мы можем использовать более удобную и привычную запись:
+v3 = v1 + v2       # v1.__add__(v2)
 print('v3 =', v3)  # v3.__str__()
 
-# # На самом деле это работает так:
+# На самом деле это работает так:
 v4 = v1.__add__(v2)
 print(f'{v4 = !s}')
-#
+
 # v4 = v1 - v2  # TypeError: unsupported operand type(s) for -: 'Vector'
-#
+
+# Проверяем как работают разные типы данных
 something = v1 + slonik  # v1.__add__(slonik)
 print(f'something = {something!r}')
 print(f'something = {something!s}')
-#
+
 # some_v2 = slonik + v2  # TypeError
-# # #
-# # Функция print() для получения строки для вывода вызывает методы __str__()
+
+# Функция print() для получения строки для вывода вызывает методы __str__()
 print('v3 + v3 =', v3 + v3)
 print('Repr of v3 = ', repr(v3))
-print(f'{v3!r}')  ## __repr__()
-print(f'{v3!s}')  ## __str__()
-#
+print(f'{v3!r}')  # __repr__()
+print(f'{v3!s}')  # __str__()
+
 v5 = v1.add(v2)
 v6 = v1.__add__(v2)
 v7 = v1 + v2
 v8 = v1
 #
 # # Без перегрузки оператора ==, сравниваются id двух объектов
-print(v1 == v8)   ## id(v1) == id(v8)
+print(v1 == v8)   # id(v1) == id(v8)
+print(v1 == v2)
 print(v1 != v2)
 
