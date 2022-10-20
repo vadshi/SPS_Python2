@@ -21,7 +21,7 @@ class Vector:
         return txt
 
     # Неизменяемый вектор
-    def __add__(self, obj: Vector):  #  v + obj
+    def __add__(self, obj: Vector):  # v + obj
         v = Vector()
         v.x = self.x + obj.x
         v.y = self.y + obj.y
@@ -126,18 +126,18 @@ print("|c| =", abs(c))
 # print("a > b ->", a > b)
 # print("a <= b ->", a <= b)
 # print("a >= b ->", a >= b)
-# #
+
 # print("Vectors operations:")
 # print("Vectors sum:")
 # print("a + b =", a + b)
 # c += a
 # print("c += a ->", c)
-# # # #
+#
 # print("Vectors sub:")
 # print("a - b =", a - b)
 # c -= a
 # print("c -= a ->", c)
-# #
+
 # print("Vector mul:")
 # print("a * b =", a * b)
 # print(f'Before: {id(a) = }')
@@ -150,14 +150,14 @@ print("|c| =", abs(c))
 # print("b =", b)
 # print("a / 3 =", a / 3)
 # print("a =", a)
-#
-#
+
+
 class M:
     x = 100
     y = 100
     z = 100
 
-#
+
 my = M()
 # print(a * my)  # ERROR, неверный тип
 # print(my * a)  # a__rmul__(my) ERROR, неверный тип

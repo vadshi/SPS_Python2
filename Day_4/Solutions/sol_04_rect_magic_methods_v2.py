@@ -91,5 +91,9 @@ print(r1 <= r2)
 print(r1 == r2)
 print(r1 != r2)
 
+
+r1 *= 100  # r1 = r1 * 100
+print(r1)  # None
+
 # Проверка метода __mul__() на соответствие типов
 # print(r1 * 'hello')
