@@ -23,7 +23,28 @@ import random
 
 
 class Rect:
-    pass
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+    def perimeter(self):
+        return (self.width + self.height) * 2
+
+    def scale(self, number):
+        self.width *= number
+        self.height *= number
+
+    def rotate(self):
+        self.width, self.height = self.height, self.width
+
+    def __str__(self):
+        return f'Ширина прямоугольника составляет {self.width}, длина прямоугольника составляет {self.height}'
+
+    def __repr__(self):
+        return f'Ширина: {self.width}, длина: {self.height}'
 
 ## Тестовая часть
 rect = Rect(5, 10)
@@ -45,4 +66,3 @@ print("Площадь: ", rect.area())
 print("Периметр: ", rect.perimeter())
 print(rect)
 print(repr(rect))
-
