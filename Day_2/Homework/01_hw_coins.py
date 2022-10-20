@@ -8,8 +8,7 @@ class Coin:
 
     def flip(self):
         """  Подбрасывание монетки """
-        self.side = ...  # random.choice(['heads','tails']); random.randint(0, 1)
-        # return side # Это ошибка, здесь return не нужен
+        self.side = random.choice(['heads', 'tails'])
 
 # Задание: создайте список из n-монеток. Подбросьте(flip) все монетки.
 # выведите соотношение выпавших орлов и решек в процентах
@@ -19,3 +18,19 @@ class Coin:
 # только после того, как вы ее подбрасываете(вызываете метод flip())
 
 n = int(input('Введите количество монет: '))
+
+def find_coin_ratio(n: int) -> tuple:
+    coins_list = []
+    for i in range(n):
+        coin = Coin()
+        coin.flip()
+        coins_list.append(coin)
+    heads_count = sum(1 for coin in coins_list if coin.side == 'heads')
+    tails_count = sum(1 for coin in coins_list if coin.side == 'tails')
+    all_count = len(coins_list)
+    return heads_count / all_count, tails_count / all_count
+
+heads_result, tails_result = find_coin_ratio(n)
+
+print('Процент орлов: {} %'.format(heads_result * 100))
+print('Процент решек: {} %'.format(tails_result * 100))
