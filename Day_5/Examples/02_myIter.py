@@ -28,17 +28,17 @@
 #         return IterObj(self.start)
 #
 #
-# ## Создаем экземпляр класса Iter
+# # Создаем экземпляр класса Iter
 # obj = Iter(start=2)
 # # next(obj)  # TypeError: 'Iter' object is not an iterator
 # # print(obj.start)  # получаем значение атрибута
 # # print(obj, type(obj))
-# # #
-# # # # Каждый раз мы вызываем __iter__ и получаем новый экземпляр IterObj
-# # # Первый раз
+#
+# # Каждый раз мы вызываем __iter__ и получаем новый экземпляр IterObj
+# # Первый раз
 # for el in obj:  # iter(obj); obj.__iter__()
 #     print(el)
-# # #
+#
 # print(obj)
 # # Второй раз
 # print("Еще раз ...")
@@ -71,16 +71,15 @@ class Iter2:
             return self.i
         else:
             raise StopIteration
-#
-#
+
+
 print("Demo Iter2")
 obj = Iter2(2)
-#
-#
+
 print("Первый раз")
 for el in obj:
     print(el)
-# # # #
+
 print(f'{obj.i = }')
 print("Еще раз ...")
 for el in obj:  # obj.i уже больше пяти
@@ -88,17 +87,5 @@ for el in obj:  # obj.i уже больше пяти
 
 it = iter(obj)
 print(next(it))
-# Итерация по множеству (множество - это про уникальность)
-# s = {1, 4, 4}
-# s_iter = iter(s)
-# print(s_iter, type(s_iter))
-# print(next(s_iter))
-# print(next(s_iter))
-# print(next(s_iter))  # Out: StopIteration
 
-# Железная логика
-# s_1 = {1, 8, set()}  # Out: TypeError: unhashable type: 'set'
-
-# Множество == Ключи словаря
-# s.remove(2)  # KeyError: 2
 
