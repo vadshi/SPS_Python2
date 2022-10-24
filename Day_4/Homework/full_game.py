@@ -1,8 +1,7 @@
-# from deck_total import Card, Deck
+from deck_total import *
 
 '''
 создадим имитацию ходов в “Дурака без козырей”:
-
 1. Создайте колоду из 52 карт. Перемешайте ее.
 2. Первый игрок берет сверху 10 карт
 3. Второй игрок берет сверху 10 карт.
@@ -13,5 +12,28 @@
     4.4. Если игрок-2 бьет карту, то игрок-1 может подкинуть карту любого значения, которое есть на столе.
 5. Если Игрок-2 отбился, то Игрок-1 и Игрок-2 меняются местами. Игрок-2 ходит, Игрок-1 отбивается.    
 6. Выведите в консоль максимально наглядную визуализацию данных ходов.
-7* Реализовать возможность добрать карты из колоды после того, как один из игроков отбился/взял в руку
-'''
+7* Реализовать возможность добрать карты из колоды после того, как один из игроков отбился/взял в руку'''
+
+main_deck = Deck()
+main_deck.shuffle()
+player1 = Player(1, Deck(main_deck.draw(10)))
+player2 = Player(2, Deck(main_deck.draw(10)))
+
+game = Game(player1, player2)
+
+while main_deck:
+    game.play_round()
+    game.take_from_main_deck(main_deck)
+
+while (len(game.player1) > 0 or len(game.player2) > 0):
+    game.play_round()
+    if (len(game.player1) == 0 and len(game.player2) == 0):
+        print('Ничья')
+        break
+
+    if len(game.player1) == 0:
+        print(f'Победил игрок {game.player1.number}')
+        break
+    if len(game.player2) == 0:
+        print(f'Победил игрок {game.player2.number}')
+        break
