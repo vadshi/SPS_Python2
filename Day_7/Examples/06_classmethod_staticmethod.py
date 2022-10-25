@@ -1,5 +1,5 @@
 class DateTime(object):
-    # oбычный конструктор, который принимает 3 числа
+    # Oбычный конструктор, который принимает 3 числа
     def __init__(self, day=10, month=10, year=2000):
         self.day = day
         self.month = month
@@ -26,15 +26,17 @@ class DateTime(object):
     #     day, month, year = map(int, date_as_string.split('-'))
     #     return DateTime(day, month, year)
 
+
 is_valid = DateTime.is_valid_date('20-05-1994')
 if is_valid:
     date_obj = DateTime.from_string('20-05-1994')
     print(date_obj)
+
 date_obj2 = DateTime()
 print(date_obj2)
 date_obj3 = DateTime(1, 1, 2021)
 print(date_obj3)
-
+#
 date_obj5 = DateTime(50, 24, 21)
 print(date_obj5)
 print(date_obj5.is_valid_date('50-24-21'))

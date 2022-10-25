@@ -5,7 +5,7 @@ from random import sample    # sample(iterable, k=0) - возвращает сп
 
 digits = st.digits
 lower = st.ascii_lowercase
-upper = st.ascii_lowercase
+upper = st.ascii_uppercase
 punc = st.punctuation
 
 """
@@ -27,7 +27,7 @@ print(password(5))   # Out: au%d#
 
 # @strong
 def password(string_len):
-    """ функция генерирует строку случайных символов 
+    """ Функция генерирует строку случайных символов
 	    указанной длины из набора st.digits"""
     pass
     

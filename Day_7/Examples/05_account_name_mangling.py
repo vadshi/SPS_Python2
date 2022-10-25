@@ -51,24 +51,24 @@ class Account:
                   f' {date.astimezone()}')
 
 
-acc = Account('first', 0)
-acc.deposit(100)
-acc.deposit(250)
-acc.withdraw(370)
-acc.deposit(40)
-acc.withdraw(300)
-acc.show_history()
-
-# Про доступ к приватным атрибутам
-print(acc._get_current_time())
-print(acc._history)
-# print(acc.__balance)  ## Error
-# print(acc.balance)    ## Error
-# print(acc._balance)   ## Error
-print(vars(acc))
-print(acc._Account__balance)
-print(acc.__dict__)
-acc._Account__test()
-
-acc._Account__balance = 1000
-acc.show_balance()
+# acc = Account('first', 0)
+# acc.deposit(100)
+# acc.deposit(250)
+# acc.withdraw(370)
+# acc.deposit(40)
+# acc.withdraw(300)
+# acc.show_history()
+#
+# # Про доступ к приватным атрибутам
+# print(acc._get_current_time())
+# print(acc._history)
+# # print(acc.__balance)  ## Error
+# # print(acc.balance)    ## Error
+# # print(acc._balance)   ## Error
+# print(vars(acc))
+# print(acc._Account__balance)
+# print(acc.__dict__)
+# acc._Account__test()
+# #
+# acc._Account__balance = 1000
+# acc.show_balance()
