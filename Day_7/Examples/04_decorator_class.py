@@ -7,6 +7,7 @@
 from functools import wraps
 from collections.abc import Callable
 
+
 # Когда класс используем как декоратор,
 # пишем с маленькой буквы(по соглашению)
 class info:
@@ -22,24 +23,26 @@ class info:
         @wraps(function)
         def wrapper(*args, **kwargs):
             print('in wrapper()')
-            return function(*args, **kwargs) * self.arg1
+            return f'{self.arg2} is {function(*args, **kwargs) * self.arg1} years old'
         return wrapper
 
 
-# @info(20, 'Python')   # inst = info(20, 'Python'); mul_two = inst(mul_two)
+# @info(2, 'Python')   # inst = info(20, 'Python'); mul_two = inst(mul_two)
 # def mul_two(num1, num2):
 #     return num1 * num2
-
-
-# print(mul_two(5, 3))  ## вызов функции wrapper
+#
+#
+# print(mul_two(5, 3))  # вызов функции wrapper
 # print(mul_two)
 
 
+# ==== Без сахара ====
 def add(arg):
     return arg / 2
-#
-# ## Создаем экземпляр класс info
-info_ex = info(10, 10)
+
+
+# Создаем экземпляр класс info
+info_ex = info(3, 'Java')
 print("=========== Следующий шаг: ===========")
 add = info_ex(add)  # working __call__
 print("=========== Следующий шаг: ===========")
@@ -48,7 +51,7 @@ print("=========== Следующий шаг: ===========")
 print(type(add))
 print("=========== Следующий шаг: ===========")
 print(add)
-# print(add(10))     # working wrapper
+print(add(10))     # working wrapper
 
 
 
