@@ -7,8 +7,15 @@ chr(8364) -> '€'
 chr(8381) -> '₽'
 """
 
+def currency(func):
+    def wrapper(*args, **kwargs):
+        func_result = func(*args, **kwargs)
+        return f'{float(func_result[:-1]) / 62:.2f}$'
+    return wrapper
 
+@currency
 def summa(count: float, price: float) -> str:
+    print(f'{round(count * price, 2)}₽ - для проверки')
     return f'{round(count * price, 2)}₽'
 
 
