@@ -15,11 +15,18 @@
 **************
 """
 
+def asterisks(func):
+    def wrapper(*args, **kwargs):
+        func_result = func(*args, **kwargs)
+        num_asterisks = len(str(func_result)) + 2
+        return f"{'*' * num_asterisks}\n*{str(func_result)}*\n{'*' * num_asterisks}"
+    return wrapper
 
+@asterisks
 def func(arg):
     return arg
 
-
+@asterisks
 def func_two(a, b):
     return a + b
 
