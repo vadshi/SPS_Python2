@@ -7,6 +7,7 @@
 # Создаем для примера функцию
 from collections.abc import Callable
 
+
 # функция для примеров
 def func(text: str) -> str:
     return text.upper() + '!'
@@ -17,27 +18,27 @@ def func(text: str) -> str:
 bar = func  # Ссылка на func
 # print(type(bar), id(bar))
 # print(bar('пока'))
-
-# Можно удалить func, но bar будет вызываться
-del func
-# print(func('textest')) ## Out -> Error
+#
+# # Можно удалить func, но bar будет вызываться
+# del func
+# # print(func('textest')) ## Out -> Error
 #
 # print(bar('Я работаю'))
 # print(bar.__name__)
 # print(id(bar))
 #
-# # ## Можно хранить функции в структурах данных
+# # Можно хранить функции в структурах данных
 # funcs = [bar, str.lower, str.capitalize]
 # print(funcs)
 #
-# # ## Доступ в функциям, хранящимся внутри списка
+# # Доступ к функциям, хранящимся внутри списка
 # for function in funcs:
 #     print(function.__name__, '->', function('проверка Работы'))
-# #
-# # ## Вызов функции как элемента списка по индексу
+#
+# # Вызов функции как элемента списка по индексу
 # print(funcs[0]('первая функция'))
 #
-# # ## Словарь функций
+# # Словарь функций
 # d = {
 #      'first': str.upper
 #      ,'second': bar
@@ -48,22 +49,25 @@ del func
 # print(d['second']('bar'))
 # print(d['third']('fOO'))
 #
-# ## Передача функции в качестве аргумента в другую функцию
+#
+# # Передача функции в качестве аргумента в другую функцию
 # def greet(fun: Callable) -> None:
 #     greeting = fun('Программа на Python')
 #     print(greeting)
 #
 #
-# # ## Вызов функции greet с аргументом - функцией bar
+# # Вызов функции greet с аргументом - функцией bar
 # greet(bar)
 # # greet('hello')  ## Error
 # print(callable(bar))  # есть реализация __call__()
 # print(callable('hello'))
 # print(bar.__call__("hello"))
 #
-# # ## Вторая функция для примера
+#
+# # Вторая функция для примера
 # def imp_func(text: str) -> str:
 #     return text.lower() + '. Done!'
+#
 #
 # # Вызов функции greet с аргументом - функцией imp_func
 # greet(imp_func)
@@ -81,17 +85,18 @@ del func
 # print(numbers)
 # strings = tuple(map(bar, input("Enter: ").split(maxsplit=2)))
 # print(strings)
-#
-# ## Здесь действует распаковка
+
+## Здесь действует распаковка
 # a, b = map(float, input("Enter: ").split())
 # print(f'{a = }, {b = }')
 #
 # # Здесь отработает
 # print(*map(int, '4 8'.split()))
 
-# ## filter
+## filter
 # def condition(text):
 #     return len(text) > 3
+#
 #
 # # Включаем элемент в итоговый список, если результат работы
 # # функции condition True
@@ -104,8 +109,8 @@ del func
 #     print('Функция отработала')
 #     print('=' * 40)
 #     return a + b
-# #
-# #
+#
+#
 # from functools import reduce
 # print(reduce(add_two, ['hello', 'hi', 'привет'], 'START:'))
 
@@ -142,16 +147,16 @@ del func
 #
 # mult_by_9 = multiply(9)
 # mult_by_10 = multiply(10)
-#
-# # Это разные объекты
+# #
+# # # Это разные объекты
 # print(id(mult_by_9), id(mult_by_10))
 # print(mult_by_9)  # Out: <function __main__.multiply.<locals>.inner(num2)>
-# #
+#
 # print(mult_by_9.__closure__)  # Out: (<cell at 0xb0bd5f2c: int object at 0x836bf60>,)
-# #
+#
 # print(mult_by_9.__closure__[0].cell_contents)   # Out: 9
 # print(mult_by_10.__closure__[0].cell_contents)  # Out: 10
-# #
+#
 # print([c.cell_contents for c in mult_by_9.__closure__])  # Out: 9
 #
 # # Вызываем функцию inner с аргументом num2
@@ -159,12 +164,12 @@ del func
 # print(mult_by_9(2))   # Out: 18
 # print(mult_by_10(4))  # Out: 40
 # print(mult_by_10(5))  # Out: 50
-# #
+#
 # print(mult_by_9.__code__.co_argcount)  # Количество аргументов inner
 # print(mult_by_9.__code__.co_freevars)
 # print(mult_by_9.__code__.co_name)
 #
-# # # Исходный код функции
+# # Исходный код функции
 # import inspect as ins
 # print(ins.getsource(mult_by_9.__code__))
 
@@ -190,7 +195,7 @@ del func
 #
 # print(main('Привет, Всем '))
 # print(f'{a = }')
-#
+# #
 # print(inner_func('Может работает?')) # Error
 # print(main.inner_func) # Error
 #
@@ -227,18 +232,18 @@ del func
 #         return foo
 #     return bar
 #
-#
+# #
 # print(main_imp(3)) ## out-> function main_imp.<locals>.bar
 # print(main_imp(7)) ## out-> function main_imp.<locals>.foo
 # some_name = main_imp(1)
 # print(some_name, type(some_name))
 # print(some_name('привет'))
-# #
+#
 # # Вызываем сразу две функции подряд
 # print(main_imp(10)('Test'))
 # print(main_imp(3)('Student'))
-# #
-# # ## Используем область видимости Enclosed
+
+# ## Используем область видимости Enclosed
 # def main_imp_2(size: int, text='default'):
 #     # Вложенным функциям доступны локальные
 #     # переменные родительской функции из
@@ -252,9 +257,9 @@ del func
 #     if size > 5:
 #         return foo
 #     return bar
-
-
-# Вызываем подряд две функции
+#
+#
+# # Вызываем подряд две функции
 # print(main_imp_2(10, 'TEST')())  # foo()
 # print(main_imp_2(3)())  # Вызвали bar()
 
@@ -263,26 +268,26 @@ del func
 ## Возвращает только одно значение
 # add = lambda x, y: x + y
 # print(add(2, 3), type(add))
-# #
-# # # # ### Вызов лямбды с аргументами
+#
+# # ### Вызов лямбды с аргументами
 # print((lambda x, y: x + y)(10, 16))
 # #
 # # # Можно, но не нужно
 # print((lambda *args, **kwargs: (args, kwargs))(4, 5, b='hello', c='hi'))
 # print((lambda *args, **kwargs: (args, kwargs))(41, 51))
 #
-# # Пример функции с любым количеством аргументов
-# # args - это кортеж позиционных аргументов
-# # kwargs - это словарь именованные аргументов
+# Пример функции с любым количеством аргументов
+# args - это кортеж позиционных аргументов
+# kwargs - это словарь именованные аргументов
 # def func_1(*args, **kwargs):
 #     print(args, kwargs)
-# # #
-# #
-# # # Одна и та же функция, но с использованием lambda
+
+
+# # Одна и та же функция, но с использованием lambda
 # def multiply(num1):
 #     return lambda num2: num1 * num2
-#
-#
+# #
+# #
 # mul_5 = multiply(5)
 # print(mul_5(10))
 # mul_10 = multiply(10)
@@ -290,42 +295,43 @@ del func
 
 # lambda в качестве значения аргумента key
 # def new_order(x):
-#     return x[1]
-# #
-# list_of_tuples = [(1, 'd'), (2, 'b'), (4, 'a'), (3, 'c')]
-# # #
-# # # sorted принимает как аргумент последовательность и всегда возвращает список
-# print(sorted(list_of_tuples))
-# #
-# # # ## Сортировка по второму значению кортежей
-# print(sorted(list_of_tuples, key=lambda x: x[1]))
-# # print(sorted(list_of_tuples, key=new_order))
-# # Out: [(4, 'a'), (2, 'b'), (3, 'c'), (1, 'd')]
+#      return x[1]
 #
+#
+# list_of_tuples = [(1, 'd'), (2, 'b'), (4, 'a'), (3, 'c')]
+#
+# # sorted принимает как аргумент последовательность и всегда возвращает список
+# print(sorted(list_of_tuples))
+# # #
+# # # # ## Сортировка по второму значению кортежей
+# print(sorted(list_of_tuples, key=lambda x: x[1]))
+# print(sorted(list_of_tuples, key=new_order))
+# # # Out: [(4, 'a'), (2, 'b'), (3, 'c'), (1, 'd')]
+# #
 # # 0 1 1 4 4 9 9 16 16 25 25 - ключ(критерий) сортировки
 # print(sorted(range(-5, 6), key=lambda x: x * x))
 # # Out: [0, -1, 1, -2, 2, -3, 3, -4, 4, -5, 5]
-# # # #
+#
 # print(sorted(range(5, -6, -1), key=lambda x: x * x))
 #  # Out: [0, 1, -1, 2, -2, 3, -3, 4, -4, 5, -5]
 # #
 # print(sorted('hello', key=lambda x: ord(x) % 10))
+# Out: ['e', 'o', 'h', 'l', 'l']
 #
-#
-# # In: hel55 py5n st495 hel55 hel5
+# In: hel55 py5n st495 hel55 hel5
 # result = set(map(lambda x: x.replace('5', '*'), input('Enter: ').split()))
 # print(result)  # Out: {'hel**', 'py*n', 'hel*', 'st49*'}
 
 # Примеры с min и max
 # s = 'pyc hello python java go golang'
 # print(min(s.split(), key=len))  # Out: go
-# print(min(s.split(), key=lambda x: x.count('o')))  # java
-#
+# print(min(s.split(), key=lambda x: x.count('o')))  # pyc
+# #
 # print(max(s.split(), key=lambda x: x.count('o')))  # hello
 # print(max(s.split(), key=lambda x: x.count('h')))  # hello
-#
+# #
 # print(min(s.split(), key=lambda x: x.count('n') + len(x)))  # go
-#
+# #
 # print(min(range(20), key=lambda x: x % 3))  # 0
 # print(max(range(20), key=lambda x: x % 3))  # 2
 # print(max(s.split()[::-1], key=lambda x: x.count('y')))  # python
@@ -339,8 +345,8 @@ def greet():
     return 'Привет!'
 
 ## Механизм работы декоратора
-greet = null_decorator(greet)
-#
+# greet = null_decorator(greet)
+# #
 # print(greet())
 
 ## Функция декоратор
@@ -351,23 +357,23 @@ greet = null_decorator(greet)
 #         return modified_result
 #     return wrapper
 # # #
-# ## Декоратор
+# # ## Декоратор
 # @uppercase  ## тоже самое, что и greet_eng = uppercase(greet_eng)
 # def greet_eng() -> str:
 #     return 'Hello!'
 #
 #
 # print(greet_eng())  ## out -> HELLO!>>>>
-#
-# # Если нужно сохранить и первоначальную функцию,
-# # то создаем новую переменную
-# greet_eng_new = uppercase(greet_eng)
-# print(greet_eng_new())
-# print(greet_eng())
-# print(null_decorator(greet))
-# print(uppercase(greet))
 # #
-# ## Функция декоратор
+# # # Если нужно сохранить и первоначальную функцию,
+# # # то создаем новую переменную
+# # greet_eng_new = uppercase(greet_eng)
+# # print(greet_eng_new())
+# # print(greet_eng())
+# # print(null_decorator(greet))
+# # print(uppercase(greet))
+# # #
+# # ## Функция декоратор
 # def other(func):
 #     # Кладем все аргументы декорируемой функции
 #     # в функцию wrapper
@@ -377,11 +383,10 @@ greet = null_decorator(greet)
 #         return modified_result
 #     return wrapper
 # # #
-# # # # Переопределяем функцию встроенную sum
+# # # # Переопределяем  встроенную функцию sum
 # sum = other(sum)
 # print(sum((34, 23)))
-# # #
-# # # # ## Применение нескольких декораторов
+# ## Применение нескольких декораторов
 # def strong(func):
 #     def wrapper():
 #         return '<strong>' + func() + '</strong>'
@@ -397,27 +402,27 @@ greet = null_decorator(greet)
 # @emphasis  # Первый по порядку
 # def greet2():
 #     return 'Привет!'
-#
+# #
 # print(greet2())
 
 ## Функция декоратор
-def trace(func):
-    def wrapper(*args, **kwargs):
-        print(f'ТРАССИРОВКА: вызвана {func.__name__}() '
-              f'с {args}, {kwargs}')
-        original_result = func(*args, **kwargs)
-        print(f'ТРАССИРОВКА: {func.__name__}() '
-              f'вернула {original_result!r}')
-        return '!!!! ' + original_result + ' !!!!'
-    return wrapper
-
-
-@trace
-def say(name, line):
-    return f'{name * 3}: {line} as is'
-
-
-print(say('hi', line='Hello'))
-print('*' * 30)
-print(say(100, 5.2))
+# def trace(func):
+#     def wrapper(*args, **kwargs):
+#         print(f'ТРАССИРОВКА: вызвана {func.__name__}() '
+#               f'с {args}, {kwargs}')
+#         original_result = func(*args, **kwargs)
+#         print(f'ТРАССИРОВКА: {func.__name__}() '
+#               f'вернула {original_result!r}')
+#         return '!!!! ' + original_result + ' !!!!'
+#     return wrapper
+#
+#
+# @trace
+# def say(name, line):
+#     return f'{name * 3}: {line} as is'
+#
+#
+# print(say('hi', line='Hello'))
+# print('*' * 30)
+# print(say(100, 5.2))
 
