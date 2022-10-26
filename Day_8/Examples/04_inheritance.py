@@ -12,9 +12,10 @@ class Super(object):
         print('_private method')
 
 
-## Указываем в скобках класс Предок.
+# Указываем в скобках класс Предок.
 class Sub(Super):
     def __init__(self, age):
+        # Здесь self передавать не нужно
         super().__init__(age)
         self.__name = 'sub python'
 
@@ -29,10 +30,11 @@ class Sub(Super):
         # Запустить стандартное действие
         print('ending Sub.method')
 
+
 if __name__ == '__main__':
     y = Super()  # Создать экземпляр Super
     y.method1()  # Выполняется Super.method in Super.method
-    print(y._Super__name)  #Out: python
+    print(y._Super__name)  # Out: python
     print('=' * 40)
     x = Sub(50)  # Создать экземпляр Sub
     x.method1()  # Выполняется Sub method
@@ -43,5 +45,7 @@ if __name__ == '__main__':
     x._private()
     print(vars(x))
     y.method1()
-    print(x.__class__.__bases__)  ## Получаем класс Предок
-    print(x.__class__.__mro__)  ## MRO - method resolution order
+    print(x.__class__.__bases__)  # Получаем класс Предок
+    print(x.__class__.__mro__)  # MRO - method resolution order
+    # print(x.some)      # Out: AttributeError:
+    # print(x.method2()) # Out: AttributeError:

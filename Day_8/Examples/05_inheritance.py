@@ -1,4 +1,4 @@
-## Класс Предок
+# Класс Предок
 class Super:
     # Стандартное поведение
     def method(self):
@@ -48,7 +48,7 @@ if __name__ == '__main__':
     # for klass in (Inheritor, Replacer, Extender):
     #     print(klass)  # class or instance?
     #     print('\n' + klass.__name__ + '...')
-    # #     # Inheritor().method(), Replacer().method(), Extender().method()
+    #     # Inheritor().method(), Replacer().method(), Extender().method()
     #     klass().method()
     #     print('=' * 40)
 
@@ -56,11 +56,11 @@ if __name__ == '__main__':
     p = Provider()
     p.delegate()
     i = Inheritor()
-    # i.first()  ## Error()
+    # i.first()  # AssertionError:
     print('done')
     r = Replacer()
     r.first()
-    r.delegate()
+    # r.delegate()
     # e = Extender()
-    # e.first()  ## Error
+    # e.first()  # AssertionError:
     print(r.__class__.__mro__)

@@ -109,8 +109,10 @@ class Teacher(Person):
         return {'class_num': int(class_room.split()[0]),
                 'class_char': class_room.split()[1]}
 
-# # Наследование позволяет избежать дублирования кода
-# # и повторно использовать уже готовые реализации
+
+# Наследование позволяет избежать дублирования кода
+# и повторно использовать уже готовые реализации
+
 student1 = Student('Ivan', 'Petrov', '01.01.1990', 111, "1 A")
 print(student1.class_room)
 print(student1.get_full_name)

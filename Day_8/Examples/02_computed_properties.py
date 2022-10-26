@@ -35,13 +35,13 @@ s = Student('Ivan', 'Ivanov')
 print("before", s.__dict__)
 print(f'{s.full_name = }')
 print("after", s.__dict__)
-#
+
 print('*' * 40)
 
 s.surname = 'Petrov'
-# # print(s.__dict__)
+print(s.__dict__)
 print(f'{s.full_name = }')
-# # print(s.__dict__)
-#
+print(s.__dict__)
+
 s.name = 'Petr'
 print(f'{s.full_name = }')
