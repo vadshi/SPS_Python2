@@ -61,30 +61,32 @@ def beats(x, y):
 
 rock, paper, scissors = BrownRock(), WhitePaper(), Scissors()
 lst = [rock, paper, scissors]
-i = 0
-while i < 10:
-    first = random.choice(lst)
-    second = random.choice(lst)
-    print(f'{first} vs {second}. {beats(first, second)} win')
-    i += 1
+# i = 0
+# while i < 10:
+#     first = random.choice(lst)
+#     second = random.choice(lst)
+#     print(f'{first} vs {second}. {beats(first, second)} win')
+#     i += 1
 
 # beats(paper, 3)  # TypeError: Unknown second thing
 
 # Пробегаемся по всем классам предкам
 print(isinstance(rock, Thing))
 print(isinstance(True, int))
-
-
-# ## Показать иерархию классов
+#
+#
+## Показать иерархию классов
 print(rock.__class__.__mro__)
 print(True.__class__.__mro__)
 
 # проверяем, что Thing предок класса Rock
-print(issubclass(BrownRock, Thing))     # True
-print(issubclass(Rock, object))   # True
+print(issubclass(BrownRock, Thing))  # True
+print(issubclass(Rock, object))      # True
+print(issubclass(Rock, Scissors))    # False
 
 # аргументы - только классы, поэтому ошибка
 # print(issubclass(rock, Thing))  # Error
+
 
 class Point:
     def __init__(self, x, y):
@@ -93,8 +95,12 @@ class Point:
 
     def scale(self, number):
         if isinstance(number, (int, Thing)):
-            print(f'Point({self.x} x {self.y}) on {number} ')
+            print(f'Point({self.x},{self.y}) on {number} ')
+        else:
+            print(f'bad type of {number}')
 
 
 p = Point(3, 10)
 p.scale(rock)
+p.scale(10)
+p.scale(8.1)

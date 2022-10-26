@@ -1,19 +1,20 @@
-## super() – супер класс Python
+# super() – супер класс Python
 
 # Есть какой-то товар в классе Base с базовой ценой в 10 единиц.
 # Нам понадобилось сделать распродажу и скинуть цену на 20%.
 
-## Variant 1
+# Variant 1
 class Base:
     def price(self):
         return 10
-    
+
+
 class Discount(Base):
     def price(self):
         return 8
     
     
-## Variant 2
+# Variant 2
 class Discount(Base):
     def price(self):
         return Base.price(self) * 0.8  
@@ -30,15 +31,17 @@ class Base:
     def price(self):
         return 10
 
+
 class InterFoo(Base):
     def price(self):
         return Base.price(self) * 1.1
+
 
 class Discount(InterFoo):  # <--
     def price(self):
         return InterFoo.price(self) * 0.8  # <--
     
-## Функция super()
+# Функция super()
 # Будучи вызванным без параметров внутри какого-либо класса,
 # super() вернет прокси-объект, методы которого будут искаться только в классах,
 # стоящих ранее, чем он, в порядке MRO.
@@ -49,9 +52,11 @@ class Base:
     def price(self):
         return 10
 
+
 class InterFoo(Base):
     def price(self):
         return super().price() * 1.1
+
 
 class Discount(InterFoo):
     def price(self):
@@ -65,7 +70,7 @@ class Discount(InterFoo):
 # то в Base и object.
 
 
-## Использование в конструкторе класса
+# Использование в конструкторе класса
 class A:
     def __init__(self):
         self.x = 10
@@ -74,7 +79,7 @@ class A:
 # class B(A):
 #     def __init__(self):
 #         self.y = self.x + 5
-# #
+#
 # print(B().y)  # ошибка! AttributeError: 'B' object has no attribute 'x'
 
 # правильно:
@@ -83,10 +88,11 @@ class B(A):
         super().__init__()  # <- не забудьте!
         self.y = self.x + 5
 
+
 print(B().y)  # 15
 
 
-## Параметры super()
+# Параметры super()
 
 # Функция может принимать 2 параметра. super([type [, object]]).
 # Первый аргумент – это тип, к предкам которого мы хотим обратиться.

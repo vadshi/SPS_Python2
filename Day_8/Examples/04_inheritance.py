@@ -4,6 +4,9 @@ class Super(object):
         self._age = age
         self.__name = 'python'
         self.__id = 1234
+        # Этот атрибут является частью стабильного публичного интерфейса,
+        # в отличие от всех остальных(self._age, self.__name, self.__id)
+        self.some = 'hello'
 
     def method1(self):
         print('in Super.method1')
