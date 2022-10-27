@@ -9,7 +9,7 @@ from collections import namedtuple
 ## метод __repr__ уже определен
 
 # columns = ['fname', 'pname', 'lname', 'age']
-# # # # Первый аргумент это имя, а второй аргумент - это список атрибутов класса User
+# # Первый аргумент это имя, а второй аргумент - это список атрибутов класса User
 # User = namedtuple('User', columns)
 # print(type(User), User)
 # user = User('Иван', 'Иванович', 'Иванов', 30)
@@ -17,7 +17,7 @@ from collections import namedtuple
 # print(user.lname)
 # user.pname = 'change'  # Error
 
-# ## Пример со списком в качестве атрибута
+## Пример со списком в качестве атрибута
 # Person = namedtuple("Person", "name children")  # неявно вызывается split()
 # petr = Person("Petr Ivanovich", ["Anna", "Mikhail"])
 # print(f'Before: {petr = }')
@@ -30,8 +30,8 @@ from collections import namedtuple
 # print(p)
 # print(p.x)
 # print(p[2])  # z
-
-# Запрещаем создание атрибутов у объектов класса
+#
+# # Запрещаем создание атрибутов у объектов класса
 # class NewPoint(namedtuple('Point', ['x', 'y'])):
 #     __slots__ = ()  # предотвращает создание словарей экземпляров
 #     @property
@@ -46,15 +46,15 @@ from collections import namedtuple
 #     print(p)
 # # # # #
 # point1 = NewPoint(4, 4)
-# # point1.name = 'name' ## AttributeError
+# # point1.name = 'name'  # AttributeError
 # print(point1.distance_from_zero)
 
 
-## Методы NamepTuple
-Car = namedtuple('Car', 'color mileage')  ## неявно вызывается split()
-# Car = namedtuple('Car' , ['color', 'mileage'])  ## the same
+# Методы namedtuple
+# Car = namedtuple('Car', 'color mileage')  # неявно вызывается split()
+# # Car = namedtuple('Car' , ['color', 'mileage'])  ## the same
 #
-my_car = Car('red', 123000)
+# my_car = Car('red', 123000)
 # # доступ к значениям через атрибуты
 # print(f'{my_car.color = }')
 # print(f'{my_car.mileage = }')
@@ -67,13 +67,13 @@ my_car = Car('red', 123000)
 # print(f'{color_value = }', f'{mileage_value = }')
 # print(*my_car)
 # print(f'{my_car = }')
-
-## my_car.color = 'brown' ## Error
+#
+# # my_car.color = 'brown' ## Error
 # attr = {'mileage': 345, 'color': 'green'}
-# car_two = Car(**attr) # Car(color='green', mileage=345)
+# car_two = Car(**attr)  # Car(color='green', mileage=345)
 # print(f'{car_two = }')
 #
-# # # ## расширяем класс авто
+# ## расширяем класс авто
 # class MyCarWithMethods(Car):
 #     def hexcolor(self):
 #         if self.color == 'red':
@@ -85,44 +85,45 @@ my_car = Car('red', 123000)
 #         if self.mileage > 10000:
 #             return "It's time for maintenance"
 #
+#
 # new_car = MyCarWithMethods('red', 89700)
 # print(new_car.hexcolor())
 # print(new_car.maintenance())
-
-# # Самый легкий способ создать иерархии именованных кортежей —
-# # использовать свойства _fields базового кортежа:
+#
+# # # Самый легкий способ создать иерархии именованных кортежей —
+# # # использовать свойства _fields базового кортежа:
 # print(Car._fields)
 # ElectricCar = namedtuple('ElectricCar', Car._fields + ('charge',))
 # el_car = ElectricCar('red', 123, 45.0)
 # print(f'{el_car = }')
-#
-# # # Помимо свойства _fields, каждый экземпляр именованного кортежа также
-# # # предлагает еще несколько вспомогательных методов, которые могут
-# # # быть полезны. Все их имена начинаются с одинарного символа
-# # # подчеркивания ('_'), который обычно сигнализирует о том, что метод или
-# # # свойство являются «приватными» и не являются частью стабильного
-# # # публичного интерфейса класса или модуля.
-# # #
-# # # В случае с именованными кортежами согласованное правило
-# # # именования с символом подчеркивания несет в себе другой смысл. Эти
-# # # вспомогательные методы и свойства являются составной частью публичного
-# # # интерфейса класса namedtuple.
-# # # Вспомогательные методы получают такие имена, чтобы избежать конфликтов
-# # # имен с определяемыми пользователями полями кортежей.
 # #
+# # Помимо свойства _fields, каждый экземпляр именованного кортежа также
+# # предлагает еще несколько вспомогательных методов, которые могут
+# # быть полезны. Все их имена начинаются с одинарного символа
+# # подчеркивания ('_'), который обычно сигнализирует о том, что метод или
+# # свойство являются «приватными» и не являются частью стабильного
+# # публичного интерфейса класса или модуля.
+# #
+# # В случае с именованными кортежами согласованное правило
+# # именования с символом подчеркивания несет в себе другой смысл. Эти
+# # вспомогательные методы и свойства являются составной частью публичного
+# # интерфейса класса namedtuple.
+# # Вспомогательные методы получают такие имена, чтобы избежать конфликтов
+# # имен с определяемыми пользователями полями кортежей.
+#
 # asdict_res = el_car._asdict()
 # print(f'{asdict_res = }')
 #
 # # Чтобы вызвать значение через строковый ключ,
 # # необязательно преобразовывать namedtuple – подходит стандартная функция getattr():
 # print(getattr(el_car, 'charge'))
-
+#
 # # Метод _replace() создает копию кортежа(с новым id) и позволяет вам выборочно
 # # заменять некоторые его поля:
 # print('Before:', my_car)
 # my_car = my_car._replace(color='blue')
 # print('After:', my_car)
-# # #
+#
 # # метод класса _make() может использоваться для создания новых
 # # экземпляров класса namedtuple из (итерируемой) последовательности:
 # car_one = Car._make(['brown', 111])
@@ -130,8 +131,8 @@ my_car = Car('red', 123000)
 
 # # Именованные кортежи часто используются для назначения имён полей кортежам,
 # # возвращаемым модулями csv или sqlite3:
-# import csv
-# # ## Пример 1
+import csv
+## Пример 1
 # EmployeeRecord = namedtuple('EmployeeRecord', 'name, age, title, department, paygrade')
 # #
 # for emp in map(EmployeeRecord._make, csv.reader(open("employees_one.csv", "r"))):
@@ -153,14 +154,14 @@ my_car = Car('red', 123000)
 # print(f'{lst[0].name}, '
 #       f'{lst[0].job}, '
 #       f'{lst[0].email}')
-#
 
-## Пример 3
+
+# Пример 3
 # import sqlite3
 # # #
 # EmployeeRecord = namedtuple('EmployeeRecord', 'name, age, title, department, paygrade')
-# #
-# # # Создаем базу данных, если нет
+#
+# # Создаем базу данных, если нет
 # # # ================================================================================
 # connection = sqlite3.connect('companydata.db')
 # cursor = connection.cursor()
@@ -193,21 +194,21 @@ my_car = Car('red', 123000)
 #     total += emp.paygrade
 # print(f'{total = }')
 
-## Размер, занимаемый в памяти меньше, чем у аналогичного словаря
+# Размер, занимаемый в памяти меньше, чем у аналогичного словаря
 # Point = namedtuple("Point", "x y z")
 # point = Point(1, 2, 3)
-# # #
+#
 # namedtuple_size = sys.getsizeof(point)
 # dict_size = sys.getsizeof(point._asdict())
 # gain = 100 - namedtuple_size / dict_size * 100
-# # #
+#
 # print(f"namedtuple: {namedtuple_size} bytes ({gain:.2f}% smaller)")
 # print(f"dict:       {dict_size} bytes")
 
-## Скорость доступа к данным быстрее, чем у аналогичного словаря
+# Скорость доступа к данным быстрее, чем у аналогичного словаря
 # from time import perf_counter
-# 
-# 
+#
+#
 # def average_time(structure, test_func):
 #     time_measurements = []
 #     for _ in range(1_000_000):
@@ -216,24 +217,24 @@ my_car = Car('red', 123000)
 #         end = perf_counter()
 #         time_measurements.append(end - start)
 #     return sum(time_measurements) / len(time_measurements) * int(1e9)
-# 
-# 
+#
+#
 # def time_dict(dictionary):
 #     "x" in dictionary
 #     "missing_key" in dictionary
 #     2 in dictionary.values()
 #     "missing_value" in dictionary.values()
 #     dictionary["y"]
-# 
-# 
+#
+#
 # def time_namedtuple(named_tuple):
 #     "x" in named_tuple._fields
 #     "missing_field" in named_tuple._fields
 #     2 in named_tuple
 #     "missing_value" in named_tuple
 #     named_tuple.y
-# 
-# 
+#
+#
 # Point = namedtuple("Point", "x y z")
 # point = Point(x=1, y=2, z=3)
 # #
@@ -241,6 +242,6 @@ my_car = Car('red', 123000)
 # d = point._asdict()
 # dict_time = average_time(d, time_dict)
 # gain = dict_time / namedtuple_time
-# 
+#
 # print(f"namedtuple: {namedtuple_time:.2f} ns ({gain:.2f}x faster)")
 # print(f"dict:       {dict_time:.2f} ns")
